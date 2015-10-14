@@ -39,7 +39,7 @@ namespace _14Oct2015.Controllers
             return View();
         }
 
-        public ActionResult Details()
+        public ActionResult Details(string id)
         {
             BlogViewModel bvm = new BlogViewModel();
             bvm.Blogs = new List<Blog>()
@@ -48,9 +48,10 @@ namespace _14Oct2015.Controllers
                 new Blog() {BlogTitle = "Hanselman Minutes", BlogAuthor = "Scott Hanselman", Posts = new List<Post>()}
             };
             bvm.NumberOfBlogs = bvm.Blogs.Count;
-            bvm.Blogs.Where(blg => blg.BlogTitle == id);
+            Blog foundBlog = bvm.Blogs.Where(blg => blg.BlogTitle == id).FirstOrDefault();
+            if (foundBlog == null) return View;
             ViewBag.Title = "Details of ";
-            return View();
+            return View(bvm);
         }
     }
 }
