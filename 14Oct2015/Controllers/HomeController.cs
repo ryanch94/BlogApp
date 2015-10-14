@@ -41,6 +41,15 @@ namespace _14Oct2015.Controllers
 
         public ActionResult Details()
         {
+            BlogViewModel bvm = new BlogViewModel();
+            bvm.Blogs = new List<Blog>()
+            {
+                new Blog() {BlogTitle = "Ode To Code", BlogAuthor = "Scott Allen", Posts = new List<Post>()},
+                new Blog() {BlogTitle = "Hanselman Minutes", BlogAuthor = "Scott Hanselman", Posts = new List<Post>()}
+            };
+            bvm.NumberOfBlogs = bvm.Blogs.Count;
+            bvm.Blogs.Where(blg => blg.BlogTitle == id);
+            ViewBag.Title = "Details of ";
             return View();
         }
     }
