@@ -1,0 +1,43 @@
+﻿@using _14Oct2015.ViewModels
+@model _14Oct2015.ViewModels.BlogViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<h4>Number of blogs: @Model.NumberOfBlogs</h4>
+<table class="table table-bordered table-hover table-striped">
+    <tr>
+        <th>Blog Name</th>
+        <th>Blog Author</th>
+        <th>Number of Posts</th>
+    </tr>
+    @foreach (var blog in Model.Blogs)
+    {
+        <tr>
+            <td>@blog.BlogTitle</td>
+            <td>@blog.BlogAuthor</td>
+            <td>@blog.Posts.Count</td>
+            <td>
+                @Html.ActionLink("More", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+    }
+
+@*@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumberOfBlogs)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}*@
+
+</table>
